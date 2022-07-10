@@ -1,0 +1,133 @@
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /users:
+    post:
+      operationId: create
+      summary: ''
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: The record has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags: &ref_0
+        - users
+    get:
+      operationId: findAll
+      summary: ''
+      parameters: []
+      responses:
+        '200':
+          description: The records has been successfully finded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+      tags: *ref_0
+  /users/{id}:
+    get:
+      operationId: findOne
+      summary: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The record has been successfully finded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags: *ref_0
+    patch:
+      operationId: update
+      summary: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags: *ref_0
+    delete:
+      operationId: remove
+      summary: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+      tags: *ref_0
+info:
+  title: NestJS Boilerplate Open API Documents
+  description: The API description
+  version: '1.0'
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    CreateUserDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: John Doe
+      required:
+        - name
+    User:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+      required:
+        - id
+        - name
+    UpdateUserDto:
+      type: object
+      properties: {}

@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "codegen": "openapi-generator-cli generate -g typescript-fetch -i backend/docs/openapi.yaml -o frontend/src/client/ --additional-properties=modelPropertyNaming=camelCase,supportsES6=true,withInterfaces=true,typescriptThreePlus=true"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.5.1",
     "husky": "^8.0.0"
   }
 }
